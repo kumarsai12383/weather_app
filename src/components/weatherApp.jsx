@@ -9,7 +9,7 @@ function WeatherApp() {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
+  
   function validateCityName(CityName) {
     const havInput = CityName.trim();
     return havInput.length > 0;
@@ -50,6 +50,13 @@ function WeatherApp() {
   const current = weatherData ? weatherData.current_condition[0] : null;
   return (
     <>
+      {!weatherData && !loading && !error && (
+    <div className = "h-full relative w-full flex items-center justify-center" key="no-data">
+      <div className="text-center glass-effect p-6 rounded-2xl relative h-full w-full  items-center z-20 justify-center top-90 bg-amber-50 left-0">
+      <h1>No Weather Data Available</h1>
+      <p className="text-gray-500">Please search for a city to view the weather information.</p>
+      </div>
+    </div>)}
       <div className="flex flex-col sm:flex-row gap-3 mb-8">
         <input
           type="text"
